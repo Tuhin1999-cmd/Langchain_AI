@@ -1,5 +1,6 @@
 
 import os
+from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_groq import ChatGroq
 from langchain_ollama import ChatOllama
 from langchain_core.output_parsers import StrOutputParser
@@ -16,29 +17,28 @@ class GroqExtended:
     @staticmethod
     def chat_ollama():
         
-        #llm = ChatOllama(
-        #     model="gemma3:270m",
-        #     temperature=0
-        # )
-
-        llm = ChatGroq(
-            model = 'llama-3.1-8b-instant',
-            temperature = 0
+        llm = ChatOllama(
+            model="llama3.1:8b",
         )
+
+        # llm = ChatGroq(
+        #     model = 'llama-3.1-8b-instant',
+        #     temperature = 0
+        # )
 
         return llm
     
     @staticmethod
     def chat_gemini():
 
-        # llm = ChatGoogleGenerativeAI(
-        #         model="gemini-3-flash-preview",
-        #         google_api_key=os.environ.get("GOOGLE_API_KEY"),
-        #     )
+        llm = ChatGoogleGenerativeAI(
+                model="gemini-3-flash-preview",
+                google_api_key=os.environ.get("GOOGLE_API_KEY"),
+            )
 
-        llm = ChatGroq(
-            model = 'openai/gpt-oss-120b',
-        )
+        # llm = ChatGroq(
+        #     model = 'openai/gpt-oss-120b',
+        # )
 
         return llm
     
